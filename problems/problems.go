@@ -2,8 +2,9 @@ package problems
 
 import (
 	"fmt"
-	"github.com/roganartu/euler/helpers"
 	"math"
+
+	"../helpers"
 )
 
 func Problem_3() {

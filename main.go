@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/roganartu/euler/problems"
+
+	"./problems"
 )
 
 func main() {
