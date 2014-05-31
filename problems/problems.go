@@ -3,6 +3,7 @@ package problems
 import (
 	"fmt"
 	"github.com/roganartu/euler/helpers"
+	"math"
 )
 
 func Problem_3() {
@@ -44,4 +45,10 @@ func Problem_5() {
 		}
 		i++
 	}
+}
+
+func Problem_6() {
+	fmt.Println("Finding difference between sum-of-squares and square-of-sum for range 1-100")
+	fmt.Printf("Difference is %d\n", uint64(math.Pow(float64(helpers.SumRange(1, 100)), 2))-
+		helpers.SumRangeSquares(1, 100))
 }
