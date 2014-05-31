@@ -25,3 +25,23 @@ func Problem_3() {
 	}
 	fmt.Printf("Largest prime factor of %d is %d\n", target, max)
 }
+
+func Problem_5() {
+	var i uint64 = 20
+
+	fmt.Println("Finding smallest number divisible by all numbers 1 through 20 (inclusive)")
+	for {
+		failed := false
+		for j := 1; j <= 20; j++ {
+			if i%uint64(j) != 0 {
+				failed = true
+				break
+			}
+		}
+		if !failed {
+			fmt.Printf("%d is divisible by 1 through 20 inclusive\n", i)
+			break
+		}
+		i++
+	}
+}
