@@ -1,5 +1,9 @@
 package helpers
 
+import (
+	"math"
+)
+
 // HorizontalGridCombos returns a list of all horizontal combinations of n size
 //
 // The function assumes grid is square and that horizontal dimension is >= n.
@@ -70,4 +74,28 @@ func DiagonalGridCombos(grid [][]int, n int) [][]int {
 		}
 	}
 	return combos
+}
+
+// LatticePathCount returns the number of possible distinct paths through an nxn lattice.
+//
+// It utilises the fact that lattice path combinations are a binomial coefficient
+// problem where the value of each point in the lattice is the sum of the node
+// immediately above and left of it.
+//
+// O(n^2) time complexity.
+// O(n^2) space complexity (could be simplified to O(n) with a circular buffer)
+func LatticePathCount(n int) int {
+	var j int
+	bufSize := int(math.Pow(float64(n+1), 2))
+	buffer := make([]int, bufSize)
+
+	for i := 0; i < bufSize; i++ {
+		j = i % bufSize
+		if i%(n+1) == 0 || i < n+1 {
+			buffer[j] = 1
+		} else {
+			buffer[j] = buffer[j-1] + buffer[j-n-1]
+		}
+	}
+	return buffer[bufSize-1]
 }

@@ -14,7 +14,7 @@ func Problem_3() {
 	var target, max uint64
 
 	// Get user input
-	fmt.Print("Enter number: ")
+	fmt.Print("Enter number [600851475143]: ")
 	_, _ = fmt.Scanf("%d", &target)
 	if target == 0 {
 		target = 600851475143
@@ -222,4 +222,17 @@ func Problem_14() {
 	}
 	fmt.Printf("The longest Collatz chain for a starting number under one million "+
 		"is %d started from %d\n", max, maxStart)
+}
+
+func Problem_15() {
+	var target int
+	// Get user input
+	fmt.Print("Enter grid size [20]: ")
+	_, _ = fmt.Scanf("%d", &target)
+	if target == 0 {
+		target = 20
+	}
+
+	fmt.Printf("There are %d possible paths through a %dx%d lattice\n",
+		helpers.LatticePathCount(target), target, target)
 }
