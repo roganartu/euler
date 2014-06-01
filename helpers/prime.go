@@ -13,8 +13,8 @@ func PrimeFactorise(target uint64, cache map[uint64][]uint64) (map[uint64][]uint
 
 	// Calculate all factors for target
 	factors := make([]uint64, 0)
-	for i = 2; i < uint64(math.Sqrt(float64(target))); i++ {
-		if target%i == 0 {
+	for i = 2; i <= uint64(math.Sqrt(float64(target)))+uint64(1); i++ {
+		if target%i == 0 && target/i != 1 {
 			factors = AppendUnique(factors, target/i, i)
 		}
 	}
@@ -45,6 +45,7 @@ func PrimeFactorise(target uint64, cache map[uint64][]uint64) (map[uint64][]uint
 				f = AppendUnique(f, children[k])
 			}
 		}
+		f = AppendUnique(f, target)
 		if cache != nil {
 			cache[target] = f
 			return cache, cache[target]
