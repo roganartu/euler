@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"./problems"
+	"github.com/roganartu/euler/problems"
 )
 
 func main() {

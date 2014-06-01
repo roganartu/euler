@@ -7,7 +7,7 @@ import (
 	"math/big"
 	"os"
 
-	"../helpers"
+	"github.com/roganartu/euler/helpers"
 )
 
 func Problem_3() {
