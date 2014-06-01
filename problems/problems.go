@@ -99,3 +99,19 @@ func Problem_8() {
 	fmt.Printf("The largest product of 13 adjacent digits is %d composed of %d\n",
 		product, digits)
 }
+
+func Problem_9() {
+	fmt.Println("Finding largest Pythagorean Triplet that satisfies a + b + c = 1000")
+
+	triplets := helpers.NaturalNSumToY(3, 1000)
+
+	for _, t := range triplets {
+		if helpers.PythagoreanTriplet(t[0], t[1], t[2]) {
+			product := t[0] * t[1] * t[2]
+			fmt.Printf("Triplet %d with product %d\n", t, product)
+			return
+		}
+	}
+
+	fmt.Println("No Pythagorean Triplet satisfies a + b + c = 1000")
+}
