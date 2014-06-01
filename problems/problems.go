@@ -6,6 +6,7 @@ import (
 	"math"
 	"math/big"
 	"os"
+	"strings"
 
 	"github.com/roganartu/euler/helpers"
 )
@@ -251,4 +252,18 @@ func Problem_16() {
 
 	fmt.Printf("The sum of all the digits in 2^%d is %d\n", target,
 		helpers.SumDigits(digits))
+}
+
+func Problem_17() int {
+	var tmp, str string
+	cache := make(map[int]string)
+	for i := 1; i <= 1000; i++ {
+		cache, tmp = helpers.Stringify(i, cache)
+		str += tmp
+	}
+	str = strings.Replace(str, " ", "", -1)
+	fmt.Printf("Number of characters (ignoring spaces) in the string of the first "+
+		"1,000 numbers: %d\n", len(str))
+
+	return len(str)
 }
