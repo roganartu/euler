@@ -1,23 +1,11 @@
 package helpers
 
-import (
-	"math"
-)
-
 func PrimeFactorise(target uint64, cache map[uint64][]uint64) (map[uint64][]uint64, []uint64) {
-	var i uint64
-
 	if cache != nil && cache[target] != nil {
 		return cache, cache[target]
 	}
 
-	// Calculate all factors for target
-	factors := make([]uint64, 0)
-	for i = 2; i <= uint64(math.Sqrt(float64(target)))+uint64(1); i++ {
-		if target%i == 0 && target/i != 1 {
-			factors = AppendUnique(factors, target/i, i)
-		}
-	}
+	factors := Factorise(target)
 
 	// Detect primes and recurse if necessary
 	if len(factors) == 0 {
