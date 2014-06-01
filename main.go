@@ -1,19 +1,31 @@
 package main
 
 import (
+	"flag"
 	"fmt"
+	"strconv"
 
 	"./problems"
 )
 
 func main() {
-	var i uint
+	var i, arg uint
+
+	flag.Parse()
+	if len(flag.Args()) > 0 {
+		x, _ := strconv.Atoi(flag.Arg(0))
+		arg = uint(x)
+	}
 
 	for {
-		// Prompt user for problem to run
-		fmt.Print("Which problem number would you like to solve?: ")
-		_, _ = fmt.Scanf("%d", &i)
-		fmt.Print("\n")
+		if arg == 0 {
+			// Prompt user for problem to run
+			fmt.Print("Which problem number would you like to solve?: ")
+			_, _ = fmt.Scanf("%d", &i)
+			fmt.Print("\n")
+		} else {
+			i = arg
+		}
 
 		// TODO refactor this (possibly using reflection?)
 		switch i {
@@ -40,6 +52,11 @@ func main() {
 		case 14:
 			problems.Problem_14()
 		}
+
+		if arg > 0 {
+			break
+		}
+
 		fmt.Print("\n")
 	}
 }
