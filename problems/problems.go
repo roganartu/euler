@@ -176,3 +176,18 @@ func Problem_11() {
 
 	fmt.Printf("Maximum number in grid is %d\n", max)
 }
+
+func Problem_12() {
+	fmt.Println("Finding first triangle number with > 500 factors")
+	var i, current uint64 = 0, 0
+	var factors []uint64
+
+	for i = 1; ; i++ {
+		current += i
+		factors = helpers.Factorise(current)
+		if len(factors) > 500 {
+			fmt.Printf("Found %d with factors %d\n", current, factors)
+			break
+		}
+	}
+}

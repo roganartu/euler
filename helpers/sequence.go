@@ -70,3 +70,8 @@ func NaturalNSumToY(n int, y int) [][]int {
 	}
 	return result
 }
+
+// GetTriangleNumber returns the nth Triangle Number
+func GetTriangleNumber(n int) uint64 {
+	return SumRange(uint64(1), uint64(n))
+}
