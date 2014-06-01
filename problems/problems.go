@@ -53,3 +53,22 @@ func Problem_6() {
 	fmt.Printf("Difference is %d\n", uint64(math.Pow(float64(helpers.SumRange(1, 100)), 2))-
 		helpers.SumRangeSquares(1, 100))
 }
+
+func Problem_7() {
+	var i uint64 = 0
+	var count int = 0
+	cache := make(map[uint64][]uint64)
+
+	fmt.Println("Calculating the 10,001st prime number")
+	for {
+		var result bool
+		if cache, result = helpers.IsPrime(i, cache); result {
+			count++
+			if count == 10001 {
+				fmt.Printf("The 10,001st prime number is %d\n", i)
+				return
+			}
+		}
+		i++
+	}
+}

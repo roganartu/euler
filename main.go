@@ -23,6 +23,8 @@ func main() {
 			problems.Problem_5()
 		case 6:
 			problems.Problem_6()
+		case 7:
+			problems.Problem_7()
 		}
 		fmt.Print("\n")
 	}

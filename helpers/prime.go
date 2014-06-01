@@ -54,3 +54,8 @@ func PrimeFactorise(target uint64, cache map[uint64][]uint64) (map[uint64][]uint
 		}
 	}
 }
+
+func IsPrime(n uint64, cache map[uint64][]uint64) (map[uint64][]uint64, bool) {
+	cache, result := PrimeFactorise(n, cache)
+	return cache, len(result) == 2
+}
