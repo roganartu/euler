@@ -17,3 +17,25 @@ func SumRangeSquares(lower uint64, upper uint64) uint64 {
 	}
 	return sum
 }
+
+func GreatestAdjacentProduct(series string, size int) ([]int, uint64) {
+	var i int
+	var max uint64 = 0
+	list := make([]int, size)
+	maxList := make([]int, size)
+	for _, n := range series {
+		i = int(n) - '0'
+
+		product := uint64(1)
+		for _, num := range list {
+			product *= uint64(num)
+		}
+		if product > max {
+			copy(maxList, list)
+			max = product
+		}
+		list, _ = Shift(list)
+		list[len(list)-1] = i
+	}
+	return maxList, max
+}

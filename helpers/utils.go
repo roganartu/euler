@@ -16,3 +16,14 @@ func appendUnique(slice []uint64, i uint64) []uint64 {
 	}
 	return append(slice, i)
 }
+
+// Unshift shifts all elements forwards, removing the first element.
+//
+// Both the new slice and the removed first element are returned.
+// A zero is added to the end of the array
+func Shift(slice []int) ([]int, int) {
+	removed := slice[0]
+	shifted := slice[1:len(slice)]
+	shifted = append(shifted, 0)
+	return shifted, removed
+}
