@@ -75,3 +75,24 @@ func NaturalNSumToY(n int, y int) [][]int {
 func GetTriangleNumber(n int) uint64 {
 	return SumRange(uint64(1), uint64(n))
 }
+
+// Collatz recursively calculates the length of the Collatz reduction chain.
+func Collatz(n int, cache map[int]int) (map[int]int, int) {
+	if cache != nil && cache[n] != 0 {
+		return cache, cache[n]
+	}
+
+	if n%2 == 0 {
+		n /= 2
+	} else {
+		n = 3*n + 1
+	}
+
+	if n == 1 {
+		return cache, 1
+	}
+
+	var result int
+	cache, result = Collatz(n, cache)
+	return cache, result + 1
+}

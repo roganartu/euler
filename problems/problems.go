@@ -207,3 +207,19 @@ func Problem_13() {
 	}
 	fmt.Printf("The sum of the provided 100x 50 digit numbers is %s\n", total.String())
 }
+
+func Problem_14() {
+	var result int
+	cache := make(map[int]int)
+	max := 0
+	maxStart := 0
+	for i := 1; i < 1000000; i++ {
+		cache, result = helpers.Collatz(i, cache)
+		if result > max {
+			max = result
+			maxStart = i
+		}
+	}
+	fmt.Printf("The longest Collatz chain for a starting number under one million "+
+		"is %d started from %d\n", max, maxStart)
+}

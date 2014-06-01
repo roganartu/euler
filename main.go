@@ -37,6 +37,8 @@ func main() {
 			problems.Problem_12()
 		case 13:
 			problems.Problem_13()
+		case 14:
+			problems.Problem_14()
 		}
 		fmt.Print("\n")
 	}
