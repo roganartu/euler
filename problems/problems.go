@@ -1,8 +1,11 @@
 package problems
 
 import (
+	"bufio"
 	"fmt"
 	"math"
+	"math/big"
+	"os"
 
 	"../helpers"
 )
@@ -190,4 +193,17 @@ func Problem_12() {
 			break
 		}
 	}
+}
+
+func Problem_13() {
+	total := big.NewInt(int64(0))
+	each := big.NewInt(int64(0))
+
+	file, _ := os.Open("problems/files/problem13")
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		each.SetString(scanner.Text(), 10)
+		total.Add(total, each)
+	}
+	fmt.Printf("The sum of the provided 100x 50 digit numbers is %s\n", total.String())
 }
