@@ -17,7 +17,7 @@ func Problem_3() {
 		target = 600851475143
 	}
 
-	factors := helpers.PrimeFactorise(target)
+	_, factors := helpers.PrimeFactorise(target, nil)
 	fmt.Printf("Prime factors of %d are %d\n", target, factors)
 	max = 0
 	for i := range factors {
