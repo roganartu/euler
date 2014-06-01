@@ -27,3 +27,11 @@ func Shift(slice []int) ([]int, int) {
 	shifted = append(shifted, 0)
 	return shifted, removed
 }
+
+func ProductInt(a []int) int {
+	product := 1
+	for _, x := range a {
+		product *= x
+	}
+	return product
+}
