@@ -115,3 +115,23 @@ func Problem_9() {
 
 	fmt.Println("No Pythagorean Triplet satisfies a + b + c = 1000")
 }
+
+func Problem_10() {
+	fmt.Print("Finding sum of all primes < 2,000,000")
+
+	var i uint64
+	var result bool
+	var sum uint64 = 0
+	cache := make(map[uint64][]uint64)
+	for i = 0; i < 2000000; i++ {
+		if cache, result = helpers.IsPrime(i, cache); result {
+			sum += i
+		}
+
+		// Display progress dots
+		if i%250000 == 0 {
+			fmt.Print(".")
+		}
+	}
+	fmt.Printf("Sum is %d", sum)
+}
