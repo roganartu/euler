@@ -2,6 +2,7 @@ package helpers
 
 import (
 	"math"
+	"strconv"
 )
 
 func SumRange(lower uint64, upper uint64) uint64 {
@@ -9,6 +10,17 @@ func SumRange(lower uint64, upper uint64) uint64 {
 	var sum uint64 = 0
 	for i = lower; i <= upper; i++ {
 		sum += i
+	}
+	return sum
+}
+
+// SumDigits returns the sum of the digits contained in the given string.
+func SumDigits(digits string) uint64 {
+	var n int
+	var sum uint64 = 0
+	for _, i := range digits {
+		n, _ = strconv.Atoi(string(i))
+		sum += uint64(n)
 	}
 	return sum
 }

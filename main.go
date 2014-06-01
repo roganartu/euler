@@ -53,6 +53,8 @@ func main() {
 			problems.Problem_14()
 		case 15:
 			problems.Problem_15()
+		case 16:
+			problems.Problem_16()
 		}
 
 		if arg > 0 {

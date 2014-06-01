@@ -236,3 +236,19 @@ func Problem_15() {
 	fmt.Printf("There are %d possible paths through a %dx%d lattice\n",
 		helpers.LatticePathCount(target), target, target)
 }
+
+func Problem_16() {
+	var target int
+
+	// Get user input
+	fmt.Print("Enter number as a power of 2 [1000]: ")
+	_, _ = fmt.Scanf("%d", &target)
+	if target == 0 {
+		target = 1000
+	}
+	z := big.NewInt(int64(0))
+	digits := z.Exp(big.NewInt(int64(2)), big.NewInt(int64(1000)), nil).String()
+
+	fmt.Printf("The sum of all the digits in 2^%d is %d\n", target,
+		helpers.SumDigits(digits))
+}
