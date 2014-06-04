@@ -26,7 +26,7 @@ func TestIsPrime(t *testing.T) {
 		// Non-prime numbers should return more than two factors
 		for ; invalid < i; invalid++ {
 			_, result = IsPrime(invalid, cache)
-			assert.Equal(t, false, result)
+			assert.Equal(t, false, result, invalid, " should not return true")
 		}
 
 		// Primes should be the same as in the provided file

@@ -14,7 +14,7 @@ func PrimeFactorise(target uint64, cache map[uint64][]uint64) (map[uint64][]uint
 			// Special cases of 0 and 1
 			result = []uint64{}
 		} else {
-			result = []uint64{1, target}
+			result = []uint64{target}
 		}
 
 		// Cache result
@@ -33,7 +33,6 @@ func PrimeFactorise(target uint64, cache map[uint64][]uint64) (map[uint64][]uint
 				f = AppendUnique(f, children[k])
 			}
 		}
-		f = AppendUnique(f, target)
 		if cache != nil {
 			cache[target] = f
 			return cache, cache[target]
@@ -45,5 +44,5 @@ func PrimeFactorise(target uint64, cache map[uint64][]uint64) (map[uint64][]uint
 
 func IsPrime(n uint64, cache map[uint64][]uint64) (map[uint64][]uint64, bool) {
 	cache, result := PrimeFactorise(n, cache)
-	return cache, len(result) == 2
+	return cache, len(result) == 1 && result[0] == n
 }

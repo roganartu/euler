@@ -18,14 +18,19 @@ func Problem_3() {
 	fmt.Print("Enter number [600851475143]: ")
 	_, _ = fmt.Scanf("%d", &target)
 	if target == 0 {
-		target = 600851475143
+		// Get user input
+		fmt.Print("Enter number [600851475143]: ")
+		_, _ = fmt.Scanf("%d", &target)
+		if target == 0 {
+			target = 600851475143
+		}
 	}
 
 	_, factors := helpers.PrimeFactorise(target, nil)
 	fmt.Printf("Prime factors of %d are %d\n", target, factors)
 	max = 0
 	for i := range factors {
-		if factors[i] > max {
+		if factors[i] > max && factors[i] != target {
 			max = factors[i]
 		}
 	}
