@@ -6,6 +6,7 @@ import (
 	"math"
 	"math/big"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/roganartu/euler/helpers"
@@ -285,4 +286,50 @@ func Problem_17() int {
 		"1,000 numbers: %d\n", len(str))
 
 	return len(str)
+}
+
+func Problem_18() int {
+	maxList := make(map[int][]int, 0)
+	i := 0
+
+	file, _ := os.Open("problems/files/problem18")
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		maxList[i] = make([]int, 0)
+		lines := strings.Split(scanner.Text(), " ")
+		for _, ele := range lines {
+			j, _ := strconv.Atoi(ele)
+			maxList[i] = append(maxList[i], j)
+		}
+
+		var leftParent int
+		var rightParent int
+		for j, _ := range maxList[i] {
+			if _, ok := maxList[i-1]; ok {
+				leftParent = 0
+				rightParent = 0
+				if j != 0 {
+					leftParent = maxList[i-1][j-1]
+				}
+				if j <= i-1 {
+					rightParent = maxList[i-1][j]
+				}
+				if leftParent > rightParent {
+					maxList[i][j] += leftParent
+				} else {
+					maxList[i][j] += rightParent
+				}
+			}
+		}
+		i++
+	}
+
+	max := 0
+	for _, ele := range maxList[i-1] {
+		if ele > max {
+			max = ele
+		}
+	}
+	fmt.Printf("The maximum sum top to bottom is %d\n", max)
+	return max
 }
