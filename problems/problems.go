@@ -11,12 +11,9 @@ import (
 	"github.com/roganartu/euler/helpers"
 )
 
-func Problem_3() {
-	var target, max uint64
+func Problem_3(target uint64) uint64 {
+	var max uint64
 
-	// Get user input
-	fmt.Print("Enter number [600851475143]: ")
-	_, _ = fmt.Scanf("%d", &target)
 	if target == 0 {
 		// Get user input
 		fmt.Print("Enter number [600851475143]: ")
@@ -35,9 +32,11 @@ func Problem_3() {
 		}
 	}
 	fmt.Printf("Largest prime factor of %d is %d\n", target, max)
+
+	return max
 }
 
-func Problem_5() {
+func Problem_5() uint64 {
 	var i uint64 = 20
 
 	fmt.Println("Finding smallest number divisible by all numbers 1 through 20 (inclusive)")
@@ -55,15 +54,18 @@ func Problem_5() {
 		}
 		i++
 	}
+	return i
 }
 
-func Problem_6() {
+func Problem_6() uint64 {
 	fmt.Println("Finding difference between sum-of-squares and square-of-sum for range 1-100")
-	fmt.Printf("Difference is %d\n", uint64(math.Pow(float64(helpers.SumRange(1, 100)), 2))-
-		helpers.SumRangeSquares(1, 100))
+	diff := uint64(math.Pow(float64(helpers.SumRange(1, 100)), 2)) -
+		helpers.SumRangeSquares(1, 100)
+	fmt.Printf("Difference is %d\n", diff)
+	return diff
 }
 
-func Problem_7() {
+func Problem_7() uint64 {
 	var i uint64 = 0
 	var count int = 0
 	cache := make(map[uint64][]uint64)
@@ -75,14 +77,15 @@ func Problem_7() {
 			count++
 			if count == 10001 {
 				fmt.Printf("The 10,001st prime number is %d\n", i)
-				return
+				break
 			}
 		}
 		i++
 	}
+	return i
 }
 
-func Problem_8() {
+func Problem_8() uint64 {
 	var number string = "73167176531330624919225119674426574742355349194934" +
 		"96983520312774506326239578318016984801869478851843" +
 		"85861560789112949495459501737958331952853208805511" +
@@ -107,9 +110,10 @@ func Problem_8() {
 	digits, product := helpers.GreatestAdjacentProduct(number, 13)
 	fmt.Printf("The largest product of 13 adjacent digits is %d composed of %d\n",
 		product, digits)
+	return product
 }
 
-func Problem_9() {
+func Problem_9() int {
 	fmt.Println("Finding largest Pythagorean Triplet that satisfies a + b + c = 1000")
 
 	triplets := helpers.NaturalNSumToY(3, 1000)
@@ -118,14 +122,15 @@ func Problem_9() {
 		if helpers.PythagoreanTriplet(t[0], t[1], t[2]) {
 			product := t[0] * t[1] * t[2]
 			fmt.Printf("Triplet %d with product %d\n", t, product)
-			return
+			return product
 		}
 	}
 
 	fmt.Println("No Pythagorean Triplet satisfies a + b + c = 1000")
+	return -1
 }
 
-func Problem_10() {
+func Problem_10() uint64 {
 	fmt.Print("Finding sum of all primes < 2,000,000")
 
 	var i uint64
@@ -143,9 +148,10 @@ func Problem_10() {
 		}
 	}
 	fmt.Printf("Sum is %d", sum)
+	return sum
 }
 
-func Problem_11() {
+func Problem_11() int {
 	grid := make([][]int, 0)
 	grid = append(grid, []int{8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8})
 	grid = append(grid, []int{49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0})
@@ -184,6 +190,7 @@ func Problem_11() {
 	}
 
 	fmt.Printf("Maximum number in grid is %d\n", max)
+	return max
 }
 
 func Problem_12() {

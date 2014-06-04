@@ -30,7 +30,7 @@ func main() {
 		// TODO refactor this (possibly using reflection?)
 		switch i {
 		case 3:
-			problems.Problem_3()
+			problems.Problem_3(uint64(0))
 		case 5:
 			problems.Problem_5()
 		case 6:
