@@ -193,7 +193,7 @@ func Problem_11() int {
 	return max
 }
 
-func Problem_12() {
+func Problem_12() uint64 {
 	fmt.Println("Finding first triangle number with > 500 factors")
 	var i, current uint64 = 0, 0
 	var factors []uint64
@@ -203,12 +203,14 @@ func Problem_12() {
 		factors = helpers.Factorise(current)
 		if len(factors) > 500 {
 			fmt.Printf("Found %d with factors %d\n", current, factors)
-			break
+			return current
 		}
 	}
+	fmt.Printf("Not found\n")
+	return uint64(0)
 }
 
-func Problem_13() {
+func Problem_13() string {
 	total := big.NewInt(int64(0))
 	each := big.NewInt(int64(0))
 
@@ -219,9 +221,10 @@ func Problem_13() {
 		total.Add(total, each)
 	}
 	fmt.Printf("The sum of the provided 100x 50 digit numbers is %s\n", total.String())
+	return total.String()[0:10]
 }
 
-func Problem_14() {
+func Problem_14() int {
 	var result int
 	cache := make(map[int]int)
 	max := 0
@@ -235,9 +238,10 @@ func Problem_14() {
 	}
 	fmt.Printf("The longest Collatz chain for a starting number under one million "+
 		"is %d started from %d\n", max, maxStart)
+	return maxStart
 }
 
-func Problem_15() {
+func Problem_15() int {
 	var target int
 	// Get user input
 	fmt.Print("Enter grid size [20]: ")
@@ -246,11 +250,13 @@ func Problem_15() {
 		target = 20
 	}
 
+	result := helpers.LatticePathCount(target)
 	fmt.Printf("There are %d possible paths through a %dx%d lattice\n",
-		helpers.LatticePathCount(target), target, target)
+		result, target, target)
+	return result
 }
 
-func Problem_16() {
+func Problem_16() int {
 	var target int
 
 	// Get user input
@@ -262,8 +268,9 @@ func Problem_16() {
 	z := big.NewInt(int64(0))
 	digits := z.Exp(big.NewInt(int64(2)), big.NewInt(int64(1000)), nil).String()
 
-	fmt.Printf("The sum of all the digits in 2^%d is %d\n", target,
-		helpers.SumDigits(digits))
+	result := int(helpers.SumDigits(digits))
+	fmt.Printf("The sum of all the digits in 2^%d is %d\n", target, result)
+	return result
 }
 
 func Problem_17() int {
