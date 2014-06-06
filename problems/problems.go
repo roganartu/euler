@@ -290,12 +290,8 @@ func Problem_18() int {
 	return max
 }
 
-	max := 0
-	for _, ele := range maxList[i-1] {
-		if ele > max {
-			max = ele
-		}
-	}
+func Problem_67() int {
+	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)
 	return max
 }
