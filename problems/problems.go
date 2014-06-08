@@ -395,6 +395,23 @@ func Problem_24() int {
 	return millionth
 }
 
+func Problem_25() int {
+	i := 0
+	z := big.NewInt(int64(0))
+	nm1, nm2 := big.NewInt(0), big.NewInt(1)
+	for i = 1; ; i++ {
+		z.Add(nm1, nm2)
+		if len(z.String()) == 1000 {
+			break
+		}
+		nm2.Set(nm1)
+		nm1.Set(z)
+	}
+	fmt.Printf("The first term in the Fibonacci sequence to contain 1000 "+
+		"digits is the %dth term\n", i)
+	return i
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)
