@@ -18,3 +18,13 @@ func Factorise(target uint64, full bool) []uint64 {
 	}
 	return factors
 }
+
+// SumFactors returns the sum of the factors of target.
+func SumFactors(target uint64) uint64 {
+	factors := Factorise(target, true)
+	sum := uint64(0)
+	for _, x := range factors {
+		sum += x
+	}
+	return sum
+}

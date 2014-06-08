@@ -63,6 +63,8 @@ func main() {
 			problems.Problem_19()
 		case 20:
 			problems.Problem_20()
+		case 21:
+			problems.Problem_21()
 		case 67:
 			problems.Problem_67()
 		}

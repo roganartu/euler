@@ -54,3 +54,15 @@ func Stringify(n int, cache map[int]string) (map[int]string, string) {
 	}
 	return cache, result
 }
+
+// IsAmicable determines whether the given target is an Amicable Number.
+//
+// It returns the other number in the pair if found, otherwise 0.
+func IsAmicable(target int) int {
+	a := SumFactors(uint64(target)) + 1
+	b := SumFactors(a) + 1
+	if b == uint64(target) && b != a {
+		return int(a)
+	}
+	return 0
+}

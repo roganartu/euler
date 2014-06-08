@@ -328,6 +328,21 @@ func Problem_20() int {
 	return sum
 }
 
+func Problem_21() int {
+	amicables := make([]uint64, 0)
+	for i := 1; i < 10000; i++ {
+		if x := helpers.IsAmicable(i); x != 0 && x < 10000 {
+			amicables = helpers.AppendUnique(amicables, uint64(x), uint64(i))
+		}
+	}
+	sum := 0
+	for _, a := range amicables {
+		sum += int(a)
+	}
+	fmt.Printf("The sum of all Amicable Numbers under 10,000 is %d\n", sum)
+	return sum
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)
