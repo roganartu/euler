@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"math/big"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -341,6 +342,22 @@ func Problem_21() int {
 	}
 	fmt.Printf("The sum of all Amicable Numbers under 10,000 is %d\n", sum)
 	return sum
+}
+
+func Problem_22() int {
+	base := 'A' - 1 // A gives score 1, B score 2 etc
+	total := 0
+	names := files.Problem22
+	sort.Strings(names)
+	for i, name := range names {
+		sum := 0
+		for _, c := range name {
+			sum += int(c - base)
+		}
+		total += sum * (i + 1)
+	}
+	fmt.Printf("The sum of all scores in the file is %d\n", total)
+	return total
 }
 
 func Problem_67() int {
