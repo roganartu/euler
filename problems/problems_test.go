@@ -85,6 +85,10 @@ func TestProblem_23(t *testing.T) {
 	assert.Equal(t, 4179871, Problem_23())
 }
 
+func TestProblem_24(t *testing.T) {
+	assert.Equal(t, 2783915460, Problem_24())
+}
+
 func TestProblem_67(t *testing.T) {
 	assert.Equal(t, 7273, Problem_67())
 }

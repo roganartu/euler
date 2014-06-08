@@ -387,6 +387,14 @@ func Problem_23() int {
 	return sum
 }
 
+func Problem_24() int {
+	perms := helpers.LexographicPermutations("", 0, 9)
+	millionth, _ := strconv.Atoi(perms[999999])
+	fmt.Printf("The 1,000,000th Lexographic Permutation of the integers 0-9 "+
+		"is: %d\n", millionth)
+	return millionth
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)

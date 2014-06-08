@@ -2,6 +2,8 @@ package helpers
 
 import (
 	"math"
+	"strconv"
+	"strings"
 )
 
 // Factorise calculates all factors of the given target
@@ -33,4 +35,27 @@ func SumFactors(target uint64) uint64 {
 		sum += x
 	}
 	return sum
+}
+
+// LexographicPermutations recursively finds the ordered permutations of
+// the given range.
+func LexographicPermutations(prefix string, start int, end int) []string {
+	perms := make([]string, 0)
+	for i := start; i <= end; i++ {
+		stri := strconv.Itoa(i)
+
+		// Avoid dupes
+		if strings.Contains(prefix, stri) {
+			continue
+		}
+
+		if len(prefix) < end {
+			for _, a := range LexographicPermutations(prefix+stri, start, end) {
+				perms = append(perms, a)
+			}
+		} else {
+			perms = append(perms, prefix+stri)
+		}
+	}
+	return perms
 }
