@@ -22,7 +22,7 @@ func Problem_3(target uint64) uint64 {
 		}
 	}
 
-	_, factors := helpers.PrimeFactorise(target, nil)
+	_, factors := helpers.PrimeFactorise(target, nil, true)
 	fmt.Printf("Prime factors of %d are %d\n", target, factors)
 	max = 0
 	for i := range factors {
@@ -146,7 +146,7 @@ func Problem_10() uint64 {
 			fmt.Print(".")
 		}
 	}
-	fmt.Printf("Sum is %d", sum)
+	fmt.Printf("\nSum is %d\n", sum)
 	return sum
 }
 
@@ -199,7 +199,7 @@ func Problem_12() uint64 {
 
 	for i = 1; ; i++ {
 		current += i
-		factors = helpers.Factorise(current)
+		factors = helpers.Factorise(current, true)
 		if len(factors) > 500 {
 			fmt.Printf("Found %d with factors %d\n", current, factors)
 			return current

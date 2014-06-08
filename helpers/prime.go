@@ -1,11 +1,16 @@
 package helpers
 
-func PrimeFactorise(target uint64, cache map[uint64][]uint64) (map[uint64][]uint64, []uint64) {
+// PrimeFactorise finds all the prime factors of target.
+//
+// full is used to determine whether to short circuit factorisation as soon as
+// any non/prime factors are found. This is useful for speeding up IsPrime
+// calculations for numbers with a large number of factors.
+func PrimeFactorise(target uint64, cache map[uint64][]uint64, full bool) (map[uint64][]uint64, []uint64) {
 	if cache != nil && cache[target] != nil {
 		return cache, cache[target]
 	}
 
-	factors := Factorise(target)
+	factors := Factorise(target, full)
 
 	// Detect primes and recurse if necessary
 	if len(factors) == 0 {
@@ -28,7 +33,7 @@ func PrimeFactorise(target uint64, cache map[uint64][]uint64) (map[uint64][]uint
 		f := make([]uint64, 0)
 		for j := range factors {
 			var children []uint64
-			cache, children = PrimeFactorise(factors[j], cache)
+			cache, children = PrimeFactorise(factors[j], cache, full)
 			for k := range children {
 				f = AppendUnique(f, children[k])
 			}
@@ -43,6 +48,6 @@ func PrimeFactorise(target uint64, cache map[uint64][]uint64) (map[uint64][]uint
 }
 
 func IsPrime(n uint64, cache map[uint64][]uint64) (map[uint64][]uint64, bool) {
-	cache, result := PrimeFactorise(n, cache)
+	cache, result := PrimeFactorise(n, cache, false)
 	return cache, len(result) == 1 && result[0] == n
 }
