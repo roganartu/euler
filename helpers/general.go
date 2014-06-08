@@ -19,6 +19,12 @@ func Factorise(target uint64, full bool) []uint64 {
 	return factors
 }
 
+// ProperDivisors returns all the proper divisors of the given target
+func ProperDivisors(target uint64) []uint64 {
+	factors := Factorise(target, true)
+	return AppendUnique(factors, uint64(1))
+}
+
 // SumFactors returns the sum of the factors of target.
 func SumFactors(target uint64) uint64 {
 	factors := Factorise(target, true)

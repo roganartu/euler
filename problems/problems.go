@@ -360,6 +360,33 @@ func Problem_22() int {
 	return total
 }
 
+func Problem_23() int {
+	abundants := make(map[int]bool)
+	for i := 1; i <= 28123; i++ {
+		if helpers.IsPerfectNum(i) > 0 {
+			abundants[i] = true
+		}
+	}
+
+	sum := 0
+	for i := 1; i <= 28123; i++ {
+		found := true
+		for k, _ := range abundants {
+			x := i - k
+			if _, ok := abundants[x]; ok {
+				found = false
+				break
+			}
+		}
+		if found {
+			sum += i
+		}
+	}
+	fmt.Printf("The sum of all positive integers that cannot be represented "+
+		"as the sum of two abundant numbers is %d\n", sum)
+	return sum
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)

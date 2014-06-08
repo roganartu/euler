@@ -66,3 +66,20 @@ func IsAmicable(target int) int {
 	}
 	return 0
 }
+
+// IsPerfectNum determines whether the given target is a Perfect Number.
+//
+// Specifically, whether the proper divisors of target sum to target.
+//
+// Returns 0 if target is a Perfect Number, -1 if deficient and +1 if abundant.
+// Deficient means sum of target's factors is less than target
+// Abundant means sum of target's factors is greater than target
+func IsPerfectNum(target int) int {
+	sum := int(SumFactors(uint64(target)) + 1)
+	if sum < target {
+		return -1
+	} else if sum > target {
+		return 1
+	}
+	return 0
+}
