@@ -290,6 +290,32 @@ func Problem_18() int {
 	return max
 }
 
+func Problem_19() int {
+	count := 0
+	day := 1 + 365 // 1st Jan, 1901 given 1 Jan 1900 was Monday and 1900 not leap year
+	for i := 1901; i < 2001; i++ {
+		for j := 1; j <= 12; j++ {
+			if day%7 == 0 {
+				count++
+			}
+			switch j {
+			case 1, 3, 5, 7, 8, 10, 12:
+				day += 31
+			case 4, 6, 9, 11:
+				day += 30
+			case 2:
+				day += 28
+				if i%4 == 0 {
+					day++
+				}
+			}
+		}
+	}
+	fmt.Printf("There were %d Sundays on the first of the month between "+
+		"1 Jan 1901 and 31 Dec 2000\n", count)
+	return count
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)
