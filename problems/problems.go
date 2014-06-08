@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"math/big"
+	"strconv"
 	"strings"
 
 	"github.com/roganartu/euler/helpers"
@@ -314,6 +315,17 @@ func Problem_19() int {
 	fmt.Printf("There were %d Sundays on the first of the month between "+
 		"1 Jan 1901 and 31 Dec 2000\n", count)
 	return count
+}
+
+func Problem_20() int {
+	str := helpers.BigFactorial(100)
+	sum := 0
+	for _, c := range str {
+		x, _ := strconv.Atoi(string(c))
+		sum += x
+	}
+	fmt.Printf("The sum of the digits in 100! is %d\n", sum)
+	return sum
 }
 
 func Problem_67() int {

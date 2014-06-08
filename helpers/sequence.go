@@ -2,6 +2,7 @@ package helpers
 
 import (
 	"math"
+	"math/big"
 	"strconv"
 )
 
@@ -107,4 +108,16 @@ func Collatz(n int, cache map[int]int) (map[int]int, int) {
 	var result int
 	cache, result = Collatz(n, cache)
 	return cache, result + 1
+}
+
+// BigFactorial calculates large factorial numbers using math/big.
+//
+// For ease of type representation, a string is returned.
+func BigFactorial(target int) string {
+	z := big.NewInt(int64(target))
+	for i := target; i > 0; i-- {
+		x := big.NewInt(int64(i))
+		z.Mul(z, x)
+	}
+	return z.String()
 }
