@@ -1,5 +1,10 @@
 package helpers
 
+import (
+	"math"
+	"math/big"
+)
+
 // Stringify converts n into a string representation of its value.
 //
 // The British usage of "and" is adhered to during generation.
@@ -82,4 +87,33 @@ func IsPerfectNum(target int) int {
 		return 1
 	}
 	return 0
+}
+
+// IsCyclic determines whether the given target is the denominator of a
+// Cyclic Number.
+//
+// It first checks whether the target is a prime number, and if it is
+// then determines the length of the period using the following formula:
+// (10^(p-1)-1)/p
+//
+// Returns true if p is prime and the length of the period is equal to p-1
+// otherwise false.
+func IsCyclic(p int) bool {
+	if _, prime := IsPrime(uint64(p), nil); prime {
+		// Add 1 zero if greater than 9, 2 zeroes if greater than 99 etc
+		multiplier := big.NewRat(int64(math.Pow10(int(math.Log10(float64(p))))), 1)
+
+		a := big.NewInt(0)
+		frac := big.NewRat(1, 1)
+		a.Exp(big.NewInt(10), big.NewInt(int64(p-1)), nil)
+		a.Sub(a, big.NewInt(1))
+		frac.SetFrac(a, big.NewInt(int64(p)))
+		frac.Mul(frac, multiplier)
+
+		str := frac.FloatString(1)
+		if str[len(str)-1] == '0' && ShortRepeatedString(str[:len(str)-2]) == "" {
+			return true
+		}
+	}
+	return false
 }

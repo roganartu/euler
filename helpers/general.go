@@ -2,6 +2,7 @@ package helpers
 
 import (
 	"math"
+	"regexp"
 	"strconv"
 	"strings"
 )
@@ -58,4 +59,21 @@ func LexographicPermutations(prefix string, start int, end int) []string {
 		}
 	}
 	return perms
+}
+
+// ShortRepeatedString returns the longest repeated substring in str.
+//
+// If uses an inefficient implementation (ie: not suffix-tree) and should only
+// be used for sufficiently small inputs.
+//
+// Returns repeated substring if found, otherwise empty string.
+func ShortRepeatedString(str string) string {
+	for i := len(str) / 2; i < len(str)-1; i++ {
+		suffix := str[i:len(str)]
+		regex := regexp.MustCompile("" + suffix + suffix + "$")
+		if regex.MatchString(str) {
+			return suffix
+		}
+	}
+	return ""
 }

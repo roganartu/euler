@@ -412,6 +412,18 @@ func Problem_25() int {
 	return i
 }
 
+func Problem_26() int {
+	max := 0
+	for i := 2; i < 1000; i++ {
+		if helpers.IsCyclic(i) {
+			max = i
+		}
+	}
+	fmt.Printf("Longest cyclic number with a denominator less than 1,000 is: "+
+		"%d\n", max)
+	return max
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)
