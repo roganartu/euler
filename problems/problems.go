@@ -494,6 +494,13 @@ func Problem_30() int {
 	return total
 }
 
+func Problem_31() int {
+	perms := helpers.CoinPermutations(200, 1, 2, 5, 10, 20, 50, 100, 200)
+	soln := perms[len(perms)-1]
+	fmt.Printf("£2 can be made %d different ways\n", soln)
+	return soln
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)

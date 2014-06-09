@@ -77,3 +77,16 @@ func ShortRepeatedString(str string) string {
 	}
 	return ""
 }
+
+// CoinPermutations calculates all possible permutations of coin values totalling
+// given sum.
+func CoinPermutations(target int, coins ...int) []int {
+	perms := make([]int, target+1)
+	perms[0] = 1
+	for _, c := range coins {
+		for i := c; i <= target; i++ {
+			perms[i] += perms[i-c]
+		}
+	}
+	return perms
+}
