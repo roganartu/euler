@@ -450,6 +450,18 @@ func Problem_27() int {
 	return product
 }
 
+func Problem_28() int {
+	sum := 0
+	for i := 1; i <= 500; i++ {
+		fi := float64(i)
+		// All diagonals summed together
+		sum += int(float64(4)*(math.Pow(float64(2)*fi+1, 2)) - float64(12)*fi)
+	}
+	sum += 1
+	fmt.Printf("Sum of diagonals in a 1,001 x 1,001 spiral is %d\n", sum)
+	return sum
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)
