@@ -424,6 +424,32 @@ func Problem_26() int {
 	return max
 }
 
+func Problem_27() int {
+	cache := make(map[uint64][]uint64)
+	maxCount, maxA, maxB := 0, 0, 0
+	for a := -999; a < 1000; a++ {
+		for b := -999; b < 1000; b++ {
+			primeCount := 0
+			var prime bool
+			for n := 0; ; n++ {
+				test := uint64(math.Abs(float64(int(math.Pow(float64(n), 2)) + a*n + b)))
+				if cache, prime = helpers.IsPrime(test, cache); prime {
+					primeCount++
+				} else {
+					break
+				}
+			}
+			if primeCount > maxCount {
+				maxCount, maxA, maxB = primeCount, a, b
+			}
+		}
+	}
+	product := maxA * maxB
+	fmt.Printf("The coefficients a=%d and b=%d with product %d produce %d "+
+		"primes\n", maxA, maxB, product, maxCount)
+	return product
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)
