@@ -17,6 +17,23 @@ func appendUnique(slice []uint64, i uint64) []uint64 {
 	return append(slice, i)
 }
 
+func AppendUniqueString(slice []string, i ...string) []string {
+	for _, ele := range i {
+		slice = appendUniqueString(slice, ele)
+	}
+	return slice
+}
+
+// From http://stackoverflow.com/a/9561388/943833
+func appendUniqueString(slice []string, i string) []string {
+	for _, ele := range slice {
+		if ele == i {
+			return slice
+		}
+	}
+	return append(slice, i)
+}
+
 // Unshift shifts all elements forwards, removing the first element.
 //
 // Both the new slice and the removed first element are returned.

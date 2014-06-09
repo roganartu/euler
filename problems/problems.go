@@ -462,6 +462,20 @@ func Problem_28() int {
 	return sum
 }
 
+func Problem_29() int {
+	var a, b int64
+	z := big.NewInt(1)
+	sequence := make([]string, 0)
+	for a = 2; a <= 100; a++ {
+		for b = 2; b <= 100; b++ {
+			z.Exp(big.NewInt(a), big.NewInt(b), nil)
+			sequence = helpers.AppendUniqueString(sequence, z.String())
+		}
+	}
+	fmt.Printf("There are %d distinct terms in the sequence\n", len(sequence))
+	return len(sequence)
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)
