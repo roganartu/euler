@@ -113,11 +113,28 @@ func Collatz(n int, cache map[int]int) (map[int]int, int) {
 // BigFactorial calculates large factorial numbers using math/big.
 //
 // For ease of type representation, a string is returned.
-func BigFactorial(target int) string {
-	z := big.NewInt(int64(target))
-	for i := target - 1; i > 0; i-- {
-		x := big.NewInt(int64(i))
-		z.Mul(z, x)
+func BigFactorial(target int, cache map[int]big.Int) (string, map[int]big.Int) {
+	if cache != nil {
+		if result, ok := cache[target]; ok {
+			return result.String(), cache
+		}
 	}
-	return z.String()
+
+	// Recurse to find child factorials
+	z := big.NewInt(int64(target))
+	x := big.NewInt(1)
+	if target > 0 {
+		var result string
+		result, cache = BigFactorial(target-1, cache)
+		x.SetString(result, 10)
+		z.Mul(z, x)
+	} else {
+		z.Add(z, x)
+	}
+
+	// Cache and return
+	if cache != nil {
+		cache[target] = *z
+	}
+	return z.String(), cache
 }

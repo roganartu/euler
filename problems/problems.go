@@ -319,7 +319,7 @@ func Problem_19() int {
 }
 
 func Problem_20() int {
-	str := helpers.BigFactorial(100)
+	str, _ := helpers.BigFactorial(100, nil)
 	sum := 0
 	for _, c := range str {
 		x, _ := strconv.Atoi(string(c))
