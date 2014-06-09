@@ -125,6 +125,10 @@ func TestProblem_33(t *testing.T) {
 	assert.Equal(t, 100, Problem_33())
 }
 
+func TestProblem_34(t *testing.T) {
+	assert.Equal(t, 40730, Problem_34())
+}
+
 func TestProblem_67(t *testing.T) {
 	assert.Equal(t, 7273, Problem_67())
 }

@@ -550,6 +550,27 @@ func Problem_33() int {
 	return soln
 }
 
+func Problem_34() int {
+	cache := make(map[int]big.Int)
+	total := 0
+	for i := 10; i < 2540161; i++ {
+		str := strconv.Itoa(i)
+		sum := 0
+		for _, c := range str {
+			var result string
+			result, cache = helpers.BigFactorial(int(c-'0'), cache)
+			x, _ := strconv.Atoi(result)
+			sum += x
+		}
+		if sum == i {
+			total += i
+		}
+	}
+	fmt.Printf("The sum of all numbers which are equal to the sum of the "+
+		"factorial of their digits is %d\n", total)
+	return total
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)
