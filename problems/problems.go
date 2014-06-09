@@ -526,6 +526,30 @@ func Problem_32() int {
 	return sum
 }
 
+func Problem_33() int {
+	z := big.NewRat(1, 1)
+	for a := 10; a < 100; a++ {
+		if a%10 == 0 {
+			continue
+		}
+		min := (a % 10) * 10
+		fa := float64(a)
+		for b := min + 9; b > min && b > a; b-- {
+			fb := float64(b)
+			numerator := (fa - (float64(min) / 10)) / 10
+			denominator := float64(b % 10)
+			if numerator/denominator == fa/fb {
+				x := big.NewRat(int64(numerator), int64(denominator))
+				z.Mul(z, x)
+			}
+		}
+	}
+	soln := int(z.Denom().Int64())
+	fmt.Printf("The denominator of the product of the four digit-cancelling "+
+		"fractions is %d\n", soln)
+	return soln
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)
