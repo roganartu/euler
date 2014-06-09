@@ -95,6 +95,8 @@ func main() {
 			problems.Problem_35()
 		case 36:
 			problems.Problem_36()
+		case 37:
+			problems.Problem_37()
 		case 67:
 			problems.Problem_67()
 		}

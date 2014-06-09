@@ -1,5 +1,9 @@
 package helpers
 
+import (
+	"strconv"
+)
+
 // PrimeFactorise finds all the prime factors of target.
 //
 // full is used to determine whether to short circuit factorisation as soon as
@@ -50,4 +54,24 @@ func PrimeFactorise(target uint64, cache map[uint64][]uint64, full bool) (map[ui
 func IsPrime(n uint64, cache map[uint64][]uint64) (map[uint64][]uint64, bool) {
 	cache, result := PrimeFactorise(n, cache, false)
 	return cache, len(result) == 1 && result[0] == n
+}
+
+func IsTruncatablePrime(n uint64, cache map[uint64][]uint64) (map[uint64][]uint64, bool) {
+	str := strconv.FormatUint(n, 10)
+	last := len(str)
+	var target int
+	var ok bool
+	for direction := 0; direction < 2; direction++ {
+		for i := 0; i < last; i++ {
+			if direction == 0 {
+				target, _ = strconv.Atoi(str[0 : last-i])
+			} else {
+				target, _ = strconv.Atoi(str[i:last])
+			}
+			if cache, ok = IsPrime(uint64(target), cache); !ok {
+				return cache, false
+			}
+		}
+	}
+	return cache, true
 }

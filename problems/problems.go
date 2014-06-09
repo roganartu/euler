@@ -603,6 +603,20 @@ func Problem_36() int {
 	return sum
 }
 
+func Problem_37() int {
+	sum, count := 0, 0
+	cache := make(map[uint64][]uint64)
+	var ok bool
+	for i := 10; i < 1000000; i++ {
+		if cache, ok = helpers.IsTruncatablePrime(uint64(i), cache); ok {
+			sum += i
+			count += 1
+		}
+	}
+	fmt.Printf("The sum of the %d truncatable primes is %d\n", count, sum)
+	return sum
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)
