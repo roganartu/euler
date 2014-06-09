@@ -3,6 +3,7 @@ package helpers
 import (
 	"math"
 	"math/big"
+	"strconv"
 )
 
 // Stringify converts n into a string representation of its value.
@@ -133,4 +134,16 @@ func IsPandigital(target string) bool {
 		}
 	}
 	return true
+}
+
+// Rotations returns a list of all the possible rotations of the given target.
+func Rotations(target int) []int {
+	str := strconv.Itoa(target)
+	rotations := make([]int, len(str))
+	last := len(str) - 1
+	for i := 0; i < len(str); i++ {
+		tmp := str[0:i]
+		rotations[i], _ = strconv.Atoi(str[i:last+1] + tmp)
+	}
+	return rotations
 }

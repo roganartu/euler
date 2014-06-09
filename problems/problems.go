@@ -571,6 +571,25 @@ func Problem_34() int {
 	return total
 }
 
+func Problem_35() int {
+	count := 0
+	cache := make(map[uint64][]uint64)
+	for i := 2; i < 1000000; i++ {
+		var result bool
+		circular := true
+		for _, rotation := range helpers.Rotations(i) {
+			if cache, result = helpers.IsPrime(uint64(rotation), cache); !result {
+				circular = false
+			}
+		}
+		if circular {
+			count += 1
+		}
+	}
+	fmt.Printf("There are %d circular primes below 1,000,000\n", count)
+	return count
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)
