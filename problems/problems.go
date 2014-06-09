@@ -476,6 +476,24 @@ func Problem_29() int {
 	return len(sequence)
 }
 
+func Problem_30() int {
+	total := 0
+	for i := 10; i < 200000; i++ {
+		str := strconv.Itoa(i)
+		sum := 0
+		for _, c := range str {
+			j, _ := strconv.Atoi(string(c))
+			sum += int(math.Pow(float64(j), 5))
+		}
+		if sum == i {
+			total += sum
+		}
+	}
+	fmt.Printf("The sum of all numbers that can be written as the sum of "+
+		"fifth powers of their digits is %d\n", total)
+	return total
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)
