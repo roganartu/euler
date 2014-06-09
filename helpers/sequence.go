@@ -115,7 +115,7 @@ func Collatz(n int, cache map[int]int) (map[int]int, int) {
 // For ease of type representation, a string is returned.
 func BigFactorial(target int) string {
 	z := big.NewInt(int64(target))
-	for i := target; i > 0; i-- {
+	for i := target - 1; i > 0; i-- {
 		x := big.NewInt(int64(i))
 		z.Mul(z, x)
 	}
