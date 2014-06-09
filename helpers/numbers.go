@@ -117,3 +117,20 @@ func IsCyclic(p int) bool {
 	}
 	return false
 }
+
+// IsPandigital returns true if the supplied target is a Pandigital Number.
+func IsPandigital(target string) bool {
+	n := len(target)
+	for i := 1; i <= n; i++ {
+		count := 0
+		for _, c := range target {
+			if int(c-'0') == i {
+				count++
+			}
+		}
+		if count != 1 {
+			return false
+		}
+	}
+	return true
+}

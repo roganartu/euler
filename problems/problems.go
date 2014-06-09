@@ -501,6 +501,31 @@ func Problem_31() int {
 	return soln
 }
 
+func Problem_32() int {
+	pandigitals := make([]uint64, 0)
+	for i := 1000; i < 10000; i++ {
+		factors := helpers.Factorise(uint64(i), true)
+		for _, f := range factors {
+			intF := int(f)
+			multiplicand := strconv.Itoa(i / intF)
+			multiplier := strconv.Itoa(intF)
+			product := strconv.Itoa(i)
+			test := multiplicand + multiplier + product
+			if len(test) == 9 && helpers.IsPandigital(test) {
+				pandigitals = helpers.AppendUnique(pandigitals, uint64(i))
+			}
+		}
+	}
+
+	sum := 0
+	for _, i := range pandigitals {
+		sum += int(i)
+	}
+	fmt.Printf("Sum of all products whose multiplicand/multiplier/product "+
+		"identity is 1-9 pandigital is %d\n", sum)
+	return sum
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)

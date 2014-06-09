@@ -22,3 +22,8 @@ func TestStringify(t *testing.T) {
 	_, tmp = Stringify(987, nil)
 	assert.Equal(t, "nine hundred and eighty seven", tmp)
 }
+
+func TestIsPandigital(t *testing.T) {
+	assert.Equal(t, true, IsPandigital("15234"))
+	assert.Equal(t, false, IsPandigital("15534"))
+}
