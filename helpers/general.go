@@ -90,3 +90,15 @@ func CoinPermutations(target int, coins ...int) []int {
 	}
 	return perms
 }
+
+// IsPalindromic determines whether the given string is a palindrome.
+// Returns true if it is, false otherwise
+func IsPalindromic(str string) bool {
+	last := len(str) - 1
+	for i := len(str) / 2; i >= 0; i-- {
+		if str[i] != str[last-i] {
+			return false
+		}
+	}
+	return true
+}

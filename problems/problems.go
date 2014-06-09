@@ -590,6 +590,19 @@ func Problem_35() int {
 	return count
 }
 
+func Problem_36() int {
+	sum := 0
+	for i := 1; i < 1000000; i++ {
+		if helpers.IsPalindromic(strconv.FormatInt(int64(i), 10)) &&
+			helpers.IsPalindromic(strconv.FormatInt(int64(i), 2)) {
+			sum += i
+		}
+	}
+	fmt.Printf("The sum of numbers, less than 1,000,000 that are palindromic "+
+		"in both base 10 and base 2 is %d\n", sum)
+	return sum
+}
+
 func Problem_67() int {
 	max := helpers.TriangleMaxSum(files.Problem67)
 	fmt.Printf("The maximum sum top to bottom is %d\n", max)
